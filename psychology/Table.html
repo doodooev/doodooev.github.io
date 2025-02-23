@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Content</title>
+    <link rel="icon" type="image/x-icon" href="../elements/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        h2 {
+            font-size: 40px;
+            font-family: "Share Tech Mono";
+            margin: 50px;
+            word-wrap: break-word;
+            white-space: normal;
+            color: #0e1111;
+        }
+        html, body {
+            padding: 0px;
+            margin: 0px;
+        }
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        h1 {
+            font-family: Poppins;
+            color: #0C96FF;
+        }
+        table {
+            width: 80%; /* Smaller table width */
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: "Work Sans", sans-serif;
+            font-size: 14px; /* Smaller font size */
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid #065473;
+            padding: 8px; /* Smaller padding */
+            text-align: left;
+        }
+        th {
+            background-color: #065473;
+            color: white;
+            font-size: 16px; /* Smaller header font size */
+            cursor: pointer; /* Indicates the header is clickable */
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        .main-content {
+            padding-left: 50px; /* Shift main text to the right */
+        }
+        .filter-container {
+            width: 80%;
+            margin: 10px auto;
+            display: flex;
+            gap: 10px; /* Space between search bar and dropdown */
+        }
+        .filter-input {
+            flex: 1; /* Takes up remaining space */
+            padding: 8px;
+            font-size: 14px;
+        }
+        .sort-dropdown {
+            padding: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="background-color: #ece0d1; display: flex; flex-direction: column;">
+    <div style="background-color: #065473;">
+        <p class="header" style="color: white; font-size: 15px; margin-top: 20px; margin-left: 20px; font-family: Poppins;">
+            <a href="../index.html">Home</a>&nbsp;&nbsp;&nbsp;<a href="../aboutme.html">About me</a>
+        </p>
+        <h1 style="text-align: center;">
+            <a href="../index.html" style="text-decoration:none; color: #ffffff;">
+                <s>IT</s>psych?pastabowl<i class="material-icons">rice_bowl</i>
+            </a>
+        </h1>
+        <h3 style="text-align: center; color: #0C96FF; font-family: Work sans;">9626 Information Technology study material.©</h3>
+    </div>
+
+    <div class="main-content">
+        <!-- Filter and Sort Container -->
+        <div class="filter-container">
+            <!-- Search Bar -->
+            <input type="text" id="filterInput" class="filter-input" placeholder="Search for studies..." onkeyup="filterTable()">
+            <!-- Dropdown for Sorting Order -->
+            <select id="sortOrder" class="sort-dropdown" onchange="applySort()">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+        </div>
+
+        <!-- Table -->
+        <table id="studyTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Study</th>
+                    <th onclick="sortTable(1)">Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>McKinstry and Wang</td>
+                    <td>Effect of Doctor's style of dressing.</td>
+                </tr>
+                <tr>
+                    <td>McKinlay</td>
+                    <td>Perceived and actual comprehension of medical terms.</td>
+                </tr>
+                <tr>
+                    <td>Sarafino</td>
+                    <td>Why patients disclose information inaccurately.</td>
+                </tr>
+                <tr>
+                    <td>Cooke and Colver</td>
+                    <td>Asked skin cancer patients how they would prefer to be informed of their diagnosis.</td>
+                </tr>
+                <tr>
+                    <td>Savage and Armstrong</td>
+                    <td>Doctor/Patient-centered style of approach.</td>
+                </tr>
+                <tr>
+                    <td>Safer</td>
+                    <td>Appraisal delay, Illness delay, Utilization delay.</td>
+                </tr>
+                <tr>
+                    <td>Aleem and Ajarim</td>
+                    <td>Munchausen syndrome case study.</td>
+                </tr>
+                <tr>
+                    <td>Laba</td>
+                    <td>Rational non-adherence. DCE questionnaire. Which medicine patients would rather prefer.</td>
+                </tr>
+                <tr>
+                    <td>Riekert and Drotar</td>
+                    <td>Those who refuse to participate in a study will show less adherence.</td>
+                </tr>
+                <tr>
+                    <td>Chung and Naya</td>
+                    <td>MEMS track cap.</td>
+                </tr>
+                <tr>
+                    <td>Chaney</td>
+                    <td>Funhaler.</td>
+                </tr>
+                <tr>
+                    <td>Yokley and Glenwick</td>
+                    <td>Mailed general prompt, Mailed specific prompt, Extended clinic hours, Monetary reward.</td>
+                </tr>
+                <tr>
+                    <td>MacLachlan</td>
+                    <td>Phantom Limb Pain (PLP) and mirror therapy.</td>
+                </tr>
+                <tr>
+                    <td>Brudvik</td>
+                    <td>Perception of a child's pain by parents and doctors.</td>
+                </tr>
+                <tr>
+                    <td>Homes and Rahe</td>
+                    <td>Life events cause stress.</td>
+                </tr>
+                <tr>
+                    <td>Chandola</td>
+                    <td>Link between workplace stress and CHD.</td>
+                </tr>
+                <tr>
+                    <td>Friedman and Roseman</td>
+                    <td>Type A and Type B personality.</td>
+                </tr>
+                <tr>
+                    <td>Wang</td>
+                    <td>Using fMRI machine to measure changes to stress. Math stress task.</td>
+                </tr>
+                <tr>
+                    <td>Evans and Wener</td>
+                    <td>Salivary cortisol tests to measure stress in train commuters.</td>
+                </tr>
+                <tr>
+                    <td>Budzynski</td>
+                    <td>Measuring muscle tension on the forehead via an analogue monitor.</td>
+                </tr>
+                <tr>
+                    <td>Bridge</td>
+                    <td>Reducing stress on cancer patients via relaxation and imagery.</td>
+                </tr>
+                <tr>
+                    <td>Janis and Feshbach</td>
+                    <td>Fear-mongering high school students about oral hygiene.</td>
+                </tr>
+                <tr>
+                    <td>Lewin</td>
+                    <td>Reducing stress on heart attack patients by giving them manuals.</td>
+                </tr>
+                <tr>
+                    <td>Tapper</td>
+                    <td>Encouraging children to eat more fruits and vegetables.</td>
+                </tr>
+                <tr>
+                    <td>Fox</td>
+                    <td>Token economy on mine workers.</td>
+                </tr>
+                <tr>
+                    <td>Weinstein</td>
+                    <td>People believe fewer bad things happen to them than others.</td>
+                </tr>
+                <tr>
+                    <td>Seligman</td>
+                    <td>Pleasant, good, and meaningful life.</td>
+                </tr>
+                <tr>
+                    <td>Shoshani and Steinmetz</td>
+                    <td>Participation in an intervention program increasing optimism.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let currentColumnIndex = 0; // Track the currently sorted column
+        let isAscending = true; // Track the sorting order
+
+        // Filter function
+        function filterTable() {
+            const input = document.getElementById("filterInput");
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById("studyTable");
+            const rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
+                const study = rows[i].getElementsByTagName("td")[0];
+                const content = rows[i].getElementsByTagName("td")[1];
+                if (study || content) {
+                    const studyText = study.textContent || study.innerText;
+                    const contentText = content.textContent || content.innerText;
+                    if (studyText.toUpperCase().indexOf(filter) > -1 || contentText.toUpperCase().indexOf(filter) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Sort function
+        function sortTable(columnIndex) {
+            const table = document.getElementById("studyTable");
+            const rows = Array.from(table.getElementsByTagName("tr")).slice(1); // Skip the header row
+            const dropdown = document.getElementById("sortOrder");
+            isAscending = dropdown.value === "asc";
+
+            rows.sort((a, b) => {
+                const aValue = a.getElementsByTagName("td")[columnIndex].textContent.toUpperCase();
+                const bValue = b.getElementsByTagName("td")[columnIndex].textContent.toUpperCase();
+                if (aValue < bValue) return isAscending ? -1 : 1;
+                if (aValue > bValue) return isAscending ? 1 : -1;
+                return 0;
+            });
+
+            // Rebuild the table
+            const tbody = table.getElementsByTagName("tbody")[0];
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        // Apply sorting when dropdown changes
+        function applySort() {
+            sortTable(currentColumnIndex);
+        }
+
+        // Initialize sorting on the first column by default
+        document.addEventListener("DOMContentLoaded", () => {
+            sortTable(0);
+        });
+    </script>
+</body>
+</html>
