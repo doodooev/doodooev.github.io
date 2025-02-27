@@ -31,6 +31,7 @@
         h1 {
             font-family: Poppins;
             color: #0C96FF;
+          
         }
         table {
             width: 80%; /* Smaller table width */
@@ -95,6 +96,7 @@
             <input type="text" id="filterInput" class="filter-input" placeholder="Search for studies..." onkeyup="filterTable()">
             <!-- Dropdown for Sorting Order -->
             <select id="sortOrder" class="sort-dropdown" onchange="applySort()">
+                <option value="none">None</option>
                 <option value="asc">Ascending</option>
                 <option value="desc">Descending</option>
             </select>
@@ -126,7 +128,7 @@
                     <td>Asked skin cancer patients how they would prefer to be informed of their diagnosis.</td>
                 </tr>
                 <tr>
-                    <td>Savage and Armstrong</td>
+                    <td><h1 title="this is a key study">Savage and Armstrong</h1></td>
                     <td>Doctor/Patient-centered style of approach.</td>
                 </tr>
                 <tr>
@@ -154,7 +156,7 @@
                     <td>Funhaler.</td>
                 </tr>
                 <tr>
-                    <td>Yokley and Glenwick</td>
+                    <td><h1>Yokley and Glenwick</h1></td>
                     <td>Mailed general prompt, Mailed specific prompt, Extended clinic hours, Monetary reward.</td>
                 </tr>
                 <tr>
@@ -162,7 +164,7 @@
                     <td>Phantom Limb Pain (PLP) and mirror therapy.</td>
                 </tr>
                 <tr>
-                    <td>Brudvik</td>
+                    <td><h1>Brudvik</h1></td>
                     <td>Perception of a child's pain by parents and doctors.</td>
                 </tr>
                 <tr>
@@ -190,7 +192,7 @@
                     <td>Measuring muscle tension on the forehead via an analogue monitor.</td>
                 </tr>
                 <tr>
-                    <td>Bridge</td>
+                    <td><h1>Bridge</h1></td>
                     <td>Reducing stress on cancer patients via relaxation and imagery.</td>
                 </tr>
                 <tr>
@@ -218,7 +220,7 @@
                     <td>Pleasant, good, and meaningful life.</td>
                 </tr>
                 <tr>
-                    <td>Shoshani and Steinmetz</td>
+                    <td><h1>Shoshani and Steinmetz</h1></td>
                     <td>Participation in an intervention program increasing optimism.</td>
                 </tr>
             </tbody>
@@ -228,6 +230,13 @@
     <script>
         let currentColumnIndex = 0; // Track the currently sorted column
         let isAscending = true; // Track the sorting order
+        let originalRows = []; // Store the original order of rows
+
+        // Save the original order of rows when the page loads
+        document.addEventListener("DOMContentLoaded", () => {
+            const table = document.getElementById("studyTable");
+            originalRows = Array.from(table.getElementsByTagName("tr")).slice(1); // Skip the header row
+        });
 
         // Filter function
         function filterTable() {
@@ -254,33 +263,38 @@
         // Sort function
         function sortTable(columnIndex) {
             const table = document.getElementById("studyTable");
-            const rows = Array.from(table.getElementsByTagName("tr")).slice(1); // Skip the header row
             const dropdown = document.getElementById("sortOrder");
-            isAscending = dropdown.value === "asc";
+            const sortOrder = dropdown.value;
 
-            rows.sort((a, b) => {
-                const aValue = a.getElementsByTagName("td")[columnIndex].textContent.toUpperCase();
-                const bValue = b.getElementsByTagName("td")[columnIndex].textContent.toUpperCase();
-                if (aValue < bValue) return isAscending ? -1 : 1;
-                if (aValue > bValue) return isAscending ? 1 : -1;
-                return 0;
-            });
+            if (sortOrder === "none") {
+                // Restore the original order
+                const tbody = table.getElementsByTagName("tbody")[0];
+                tbody.innerHTML = "";
+                originalRows.forEach(row => tbody.appendChild(row.cloneNode(true)));
+            } else {
+                // Sort the rows
+                const rows = Array.from(table.getElementsByTagName("tr")).slice(1); // Skip the header row
+                isAscending = sortOrder === "asc";
 
-            // Rebuild the table
-            const tbody = table.getElementsByTagName("tbody")[0];
-            tbody.innerHTML = "";
-            rows.forEach(row => tbody.appendChild(row));
+                rows.sort((a, b) => {
+                    const aValue = a.getElementsByTagName("td")[columnIndex].textContent.toUpperCase();
+                    const bValue = b.getElementsByTagName("td")[columnIndex].textContent.toUpperCase();
+                    if (aValue < bValue) return isAscending ? -1 : 1;
+                    if (aValue > bValue) return isAscending ? 1 : -1;
+                    return 0;
+                });
+
+                // Rebuild the table
+                const tbody = table.getElementsByTagName("tbody")[0];
+                tbody.innerHTML = "";
+                rows.forEach(row => tbody.appendChild(row));
+            }
         }
 
         // Apply sorting when dropdown changes
         function applySort() {
             sortTable(currentColumnIndex);
         }
-
-        // Initialize sorting on the first column by default
-        document.addEventListener("DOMContentLoaded", () => {
-            sortTable(0);
-        });
     </script>
 </body>
 </html>
